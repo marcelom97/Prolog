@@ -1,3 +1,16 @@
+% ΚΕΦΑΛΗ 
+occ([],[]).
+occ([Head|Tail1], [Head|Tail2]):-
+    occ(Tail1, Tail2),
+    not(member(Head,Tail2)).
+    % not(member(Head,Tail2)),                        
+    % occ(Tail1, Tail2).
+occ([Head|Tail1], Tail2):- 
+    occ(Tail1, Tail2),
+    member(Head,Tail2).
+    % member(Head,Tail2),
+    % occ(Tail1, Tail2).
+
 % % % ΚΕΦΑΛΗ
 % occ([], []).
 % occ([H1|T1], L2):-

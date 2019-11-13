@@ -1,15 +1,15 @@
 % ΚΕΦΑΛΗ 
 evenNumbersHead([],[]).
 evenNumbersHead([Head|Tail1], [Head|Tail2]):-
-    Head mod 2 =:= 0,
-    evenNumbersHead(Tail1, Tail2).
-    % evenNumbersHead(Tail1, Tail2),
-    % Head mod 2 =:= 0.                          
+    % Head mod 2 =:= 0,
+    % evenNumbersHead(Tail1, Tail2).
+    evenNumbersHead(Tail1, Tail2),
+    Head mod 2 =:= 0.                          
 evenNumbersHead([Head|Tail], Even):- 
-    Head mod 2 =\= 0,
-    evenNumbersHead(Tail, Even).
-    % evenNumbersHead(Tail, Even),
-    % Head mod 2 =\= 0.
+    % Head mod 2 =\= 0,
+    % evenNumbersHead(Tail, Even).
+    evenNumbersHead(Tail, Even),
+    Head mod 2 =\= 0.
 
 % ΣΩΜΑ
 evenNumbersBody(List1,List2):-
