@@ -9,11 +9,11 @@ maxElementHead([Head|Tail], Max) :-
 
 % ΣΩΜΑ
 maxElementBody([Head|Tail], Max) :- 
-    maxElement1(Tail, Head, Max).
-maxElement1([], M, M).
-maxElement1([Head|Tail], M, Max) :- 
+    maxElementHelper(Tail, Head, Max).
+maxElementHelper([], M, M).
+maxElementHelper([Head|Tail], M, Max) :- 
     Head > M,
-    maxElement1(Tail, Head, Max).
-maxElement1([Head|Tail], M, Max) :- 
+    maxElementHelper(Tail, Head, Max).
+maxElementHelper([Head|Tail], M, Max) :- 
     Head =< M, 
-    maxElement1(Tail, M, Max).
+    maxElementHelper(Tail, M, Max).
