@@ -1,31 +1,25 @@
 % ΚΕΦΑΛΗ 
-occ([],[]).
-occ([Head|Tail1], [Head|Tail2]):-
-    occ(Tail1, Tail2),
-    not(member(Head,Tail2)).
+occHead([],[]).
+occHead([Head|Tail1], [Head|Tail2]):-
+    occHead(Tail1, Tail2),
+    \+member(Head,Tail2).
     % not(member(Head,Tail2)),                        
     % occ(Tail1, Tail2).
-occ([Head|Tail1], Tail2):- 
-    occ(Tail1, Tail2),
+occHead([Head|Tail1], Tail2):- 
+    occHead(Tail1, Tail2),
     member(Head,Tail2).
     % member(Head,Tail2),
     % occ(Tail1, Tail2).
-
-% % % ΚΕΦΑΛΗ
-% occ([], []).
-% occ([H1|T1], L2):-
-%     occ(T1, L2).
-% occ([H1|T1], L2):-
-%     member(H1, L2),
-%     occ(T1, L2),
-%     L2 = [H1|[L2]].
     
-% % ΣΩΜΑ
-% occ(L1, L2):-
-%     occ1(L1,[],L2).
-% occ1([],L2A,L2):-
-%     L2 = L2A.
-% occ1([Head|Tail],L2A,L2):-
-%     member(Head,Tail),
-%     NEWL2A = L2A,
-%     occ1(Tail,NEWL2A,L2).
+% ΣΩΜΑ
+occBody(L1, L2):-
+    occHelper(L1,[],L2).
+occHelper([],L2A,L2):-
+    L2 = L2A.
+occHelper([Head|Tail],L2A,L2):-
+    \+member(Head,L2A),
+    append(L2A,[Head],NEWL2A),
+    occHelper(Tail,NEWL2A,L2).
+occHelper([Head|Tail],L2A,L2):-
+    member(Head,Tail),
+    occHelper(Tail,L2A,L2).
