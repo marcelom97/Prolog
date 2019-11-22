@@ -3,13 +3,9 @@ occHead([],[]).
 occHead([Head|Tail1], [Head|Tail2]):-
     occHead(Tail1, Tail2),
     \+member(Head,Tail2).
-    % \+member(Head,Tail2),                        
-    % occHead(Tail1, Tail2).
 occHead([Head|Tail1], Tail2):- 
     occHead(Tail1, Tail2),
     member(Head,Tail2).
-    % member(Head,Tail2),
-    % occHead(Tail1, Tail2).
     
 % ΣΩΜΑ
 occBody(L1, L2):-
