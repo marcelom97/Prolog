@@ -1,15 +1,21 @@
+% Άσκηση 3
+% Γράψετε κατηγόρημα occurrences(L, X, N) το οποίο είναι αληθές εάν Ν είναι το πλήθος
+% των επαναλήψεων του στοιχείου Χ στην λίστα L. Η υλοποίηση να γίνει και με τις δύο
+% τεχνικές, κατασκευής δομής στη κεφαλή πρότασης και κατασκευής δομής στο σώμα
+% πρότασης.
+
 % ΚΕΦΑΛΗ
-occurrencesHead([], _, 0).
-occurrencesHead([Head|Tail], Element, N) :- 
+occurrences([], _, 0).
+occurrences([Head|Tail], Element, N) :- 
     dif(Element,Head), 
-    occurrencesHead(Tail, Element, N).
-occurrencesHead([Head|Tail], Element, N) :- 
+    occurrences(Tail, Element, N).
+occurrences([Head|Tail], Element, N) :- 
     Element = Head, 
-    occurrencesHead(Tail, Element, N1),
+    occurrences(Tail, Element, N1),
     N is N1 + 1.
 
 % ΣΩΜΑ
-occurrencesBody(List, Element, N) :-
+occurrences(List, Element, N) :-
     occurrencesHelper(List, Element, 0, N).
 occurrencesHelper([], _, Acc, Acc).
 occurrencesHelper([Element|Tail], Element, Acc, N) :-

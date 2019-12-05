@@ -1,14 +1,23 @@
+% Άσκηση 5
+% Γράψετε κατηγόρημα maxElement(L, Max) με mode(g,u) το οποίο είναι αληθές εάν το
+% στοιχείο Max είναι το μέγιστο στοιχείο από τα στοιχεία της λίστας L. Θεωρήσατε ότι τα
+% στοιχεία της λίστας είναι ακέραιοι αριθμοί. Να υλοποιήσετε το κατηγόρημα
+% maxElement/2 με την τεχνική κατασκευής δομής στη κεφαλή πρότασης και με την
+% τεχνική κατασκευής δομής στο σώμα πρότασης. Για την ερώτηση ?- maxElement([3, 2,
+% 8, -5, 4], Μ). να επιστρέφει Μ=8, για την ερώτηση ?- maxElement([3, 2, 8, -5, 4], 8).
+% να επιστρέφει αληθής και για την ερώτηση ?- maxElement([3, 2, 8, -5, 4], 4). να
+% επιστρέφει ψευδής. 
 % ΚΕΦΑΛΗ
-maxElementHead([Max], Max).
-maxElementHead([Head|Tail], Head) :-
-    maxElementHead(Tail, Max), 
+maxElement([Max], Max).
+maxElement([Head|Tail], Head) :-
+    maxElement(Tail, Max), 
     Head > Max.
-maxElementHead([Head|Tail], Max) :- 
-    maxElementHead(Tail, Max), 
+maxElement([Head|Tail], Max) :- 
+    maxElement(Tail, Max), 
     Head =< Max.
 
 % ΣΩΜΑ
-maxElementBody([Head|Tail], Max) :- 
+maxElement([Head|Tail], Max) :- 
     maxElementHelper(Tail, Head, Max).
 maxElementHelper([], M, M).
 maxElementHelper([Head|Tail], M, Max) :- 
