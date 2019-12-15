@@ -13,13 +13,16 @@ kb(eleni,plays,voleyball).
 kb(eleni,plays,tennis).
 %--------------------------------------------------------
 collect_results:-
+    nl,
+    write('----------MENU----------'),nl,
     write('1 gia anagnosi onomatos'),nl,
     write('2 gia anagnosi mathimatos'),nl,
     write('3 gia anagnosi paixnidiou'),nl,
     write('4 gia anagnosi rimatos opws likes, plays'),nl,
     write('5 gia exit'),nl,
     read(Option),
-    optionChooses(Option).
+    optionChooses(Option),
+    collect_results.
 %--------------------------------------------------------
 optionChooses(Option):-
     Option =:= 1, read_name.

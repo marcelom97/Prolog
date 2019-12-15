@@ -1,10 +1,13 @@
 update_KB:-
+    nl,
+    write('----------MENU----------'),nl,
     write('1 gia allagi mias egrafis'),nl,
     write('2 gia dimiourgeia mias egrafis'),nl,
     write('3 gia diagrafi mias egrafis'),nl,
     write('Otidipote allo gia exit'),nl,
     read(Option),
-    optionChooses(Option).
+    optionChooses(Option),
+    update_KB.
 %--------------------------------------------------------
 optionChooses(Option):-
     Option =:= 1, update_record.
@@ -12,6 +15,10 @@ optionChooses(Option):-
     Option =:= 2, create_record.
 optionChooses(Option):-
     Option =:= 3, delete_record.
+optionChooses(Option):-
+    Option > 3, 
+    Option < 1,
+    fail.
 %--------------------------------------------------------
 update_record:-
     see('kb.pl'),print_base,seen,
