@@ -10,19 +10,19 @@
 % ΚΕΦΑΛΗ
 maxElement([Max], Max).
 maxElement([Head|Tail], Head) :-
-    maxElement(Tail, Max), 
-    Head > Max.
-maxElement([Head|Tail], Max) :- 
-    maxElement(Tail, Max), 
-    Head =< Max.
+    maxElement(Tail, Max),
+    Head>Max.
+maxElement([Head|Tail], Max) :-
+    maxElement(Tail, Max),
+    Head=<Max.
 
 % ΣΩΜΑ
-maxElement([Head|Tail], Max) :- 
+maxElement([Head|Tail], Max) :-
     maxElementHelper(Tail, Head, Max).
 maxElementHelper([], M, M).
-maxElementHelper([Head|Tail], M, Max) :- 
-    Head > M,
+maxElementHelper([Head|Tail], M, Max) :-
+    Head>M,
     maxElementHelper(Tail, Head, Max).
-maxElementHelper([Head|Tail], M, Max) :- 
-    Head =< M, 
+maxElementHelper([Head|Tail], M, Max) :-
+    Head=<M,
     maxElementHelper(Tail, M, Max).

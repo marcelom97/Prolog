@@ -6,20 +6,20 @@
 
 % ΚΕΦΑΛΗ
 occurrences([], _, 0).
-occurrences([Head|Tail], Element, N) :- 
-    dif(Element,Head), 
+occurrences([Head|Tail], Element, N) :-
+    dif(Element, Head),
     occurrences(Tail, Element, N).
-occurrences([Head|Tail], Element, N) :- 
-    Element = Head, 
+occurrences([Head|Tail], Element, N) :-
+    Element=Head,
     occurrences(Tail, Element, N1),
-    N is N1 + 1.
+    N is N1+1.
 
 % ΣΩΜΑ
 occurrences(List, Element, N) :-
     occurrencesHelper(List, Element, 0, N).
 occurrencesHelper([], _, Acc, Acc).
 occurrencesHelper([Element|Tail], Element, Acc, N) :-
-    IncAcc is Acc + 1,
+    IncAcc is Acc+1,
     occurrencesHelper(Tail, Element, IncAcc, N).
 occurrencesHelper([Head|Tail], Element, Acc, N) :-
     dif(Head, Element),
