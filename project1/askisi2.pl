@@ -7,15 +7,15 @@
 % συνδεδεμένη με τον εαυτό της. Δηλαδή, ερωτήσεις της μορφής «?- connected(a,a).»
 % είναι αληθείς. Σημείωση: Το πρόγραμμα σας πρέπει να τρέχει για οποιοδήποτε
 % κατευθυνόμενο γράφημα
+edge(a, b).
+edge(a, d).
+edge(b, c).
+edge(b, e).
+edge(c, d).
+edge(d, e).
 
-
-edge(a,b).
-edge(a,d).
-edge(b,c).
-edge(b,e).
-edge(c,d).
-edge(d,e).
-
-connected(A,B):-edge(A,X),
-                connected(X,B);
-                A == B.
+connected(A, B) :-
+    (   edge(A, X),
+        connected(X, B)
+    ;   A==B
+    ).
