@@ -16,7 +16,7 @@ optionChooses(Option):-
 optionChooses(Option):-
     Option =:= 3, delete_record.
 optionChooses(Option):-
-    Option > 3, 
+    Option > 3; 
     Option < 1,
     fail.
 %--------------------------------------------------------
