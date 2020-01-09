@@ -3,11 +3,11 @@
 empty_stack([]).
 pop([H|_], H).
 push(Q, X, [X|Q]).
-
+% name().
 parenthesis_LR_same(StringPar) :-
     empty_stack(Right),
     empty_stack(Left),
-    string_to_list(StringPar, L),
+    name(StringPar, L),
     split_list(L, Left, Right).
 
 split_list([], Left, Right) :-
