@@ -1,32 +1,38 @@
+% Άσκηση 2
+% Να γράψετε κατηγόρημα queue_element_cardinality(Q1, Q2) το οποίο είναι αληθές εάν
+% Q1 είναι μια ουρά με στοιχεία ζεύγη μορφής (Στοιχείο, Πλήθος_επαναλλήψεων) όπου το
+% «Στοιχείο» είναι ένας ακέραιος αριθμός και το «πλήθος_επαναλλήψεων» είναι ένας
+% θετικός ακέραιος αριθμός. Τέλος, Q2 είναι μια ουρά που περιέχει κάθε «Στοιχείο» της
+% Q1 με πληθικότητα «πλήθος_επαναλλήψεων» σε διαδοχικές θέσεις. Στην υλοποίηση
+% σας να χρησιμοποιήσετε τις πράξεις για τις ουρές όπως υλοποιήθηκαν στην ενότητα των
+% διαφανειών 8.5.5. Παράδειγμα στόχου, 
+% «?- queue_element_cardinality([(5,4), (-8,3), (0,2)], Q2).»
+%  Q2 = [5,5,5,5,-8,-8,-8,0,0].
 empty_queue([]).
-push(Q, X, [Q|X]).
+member_queue(X, Q) :-
+    member(X, Q).
+get_elem_queue(X, [X|_]).
 dequeue(X, [X|T], T).
 enqueue(X, [], [X]).
-
+enqueue(X, [H|T1], [H|T2]) :-
+    enqueue(X, T1, T2).
+% --------------------------------------------------
 queue_element_cardinality(Q1, Q2) :-
-    temp_fun(Q1, Q2).
-
-temp_fun(Q1, Q2) :-
     empty_queue(Q2),
-    write(Q2),
     write_head_tail(Q1, Q2).
-
+% --------------------------------------------------
 write_head_tail([], _).
 write_head_tail([H|T], Q2) :-
     compound_name_arguments(H, _, B),
-    write_splitted(B, Q2),
+    [H1|T1]=B,
+    push_to_queue(H1, T1, Q2),
     write_head_tail(T, Q2).
-
-write_splitted([], _).
-write_splitted([H|T], Q2) :-
-    push_to_queue(H, T, Q2).
-
+% --------------------------------------------------
 push_to_queue(_, [0], Q2) :-
     nl,
     write('Q2:'),
     write(Q2),
     !.
-
 push_to_queue(H, [T|_], Q2) :-
     append(Q2, [H], NewQueue),
     NewT is T-1,

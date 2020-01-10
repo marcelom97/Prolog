@@ -14,17 +14,6 @@ update_KB :-
     optionChooses(Option),
     update_KB.
 %--------------------------------------------------------
-<<<<<<< HEAD
-optionChooses(Option):-
-    Option =:= 1, update_record.
-optionChooses(Option):-
-    Option =:= 2, create_record.
-optionChooses(Option):-
-    Option =:= 3, delete_record.
-optionChooses(Option):-
-    Option > 3; 
-    Option < 1,
-=======
 optionChooses(Option) :-
     Option=:=1,
     update_record.
@@ -35,10 +24,10 @@ optionChooses(Option) :-
     Option=:=3,
     delete_record.
 optionChooses(Option) :-
-    Option>3,
-    Option<1,
->>>>>>> dbbad6c87ae339a56e41419778a87dccf72022a2
-    fail.
+    (   Option>3
+    ;   Option<1,
+        fail
+    ).
 %--------------------------------------------------------
 update_record :-
     see('kb.pl'),
