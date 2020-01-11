@@ -8,6 +8,7 @@
 % διαφανειών 8.5.5. Παράδειγμα στόχου, 
 % «?- queue_element_cardinality([(5,4), (-8,3), (0,2)], Q2).»
 %  Q2 = [5,5,5,5,-8,-8,-8,0,0].
+
 empty_queue([]).
 member_queue(X, Q) :-
     member(X, Q).
@@ -16,24 +17,19 @@ dequeue(X, [X|T], T).
 enqueue(X, [], [X]).
 enqueue(X, [H|T1], [H|T2]) :-
     enqueue(X, T1, T2).
-% --------------------------------------------------
+% ----------------------------------------------------
+queue_element_cardinality([], _).
 queue_element_cardinality(Q1, Q2) :-
     empty_queue(Q2),
-    write_head_tail(Q1, Q2).
-% --------------------------------------------------
-write_head_tail([], _).
-write_head_tail([H|T], Q2) :-
-    compound_name_arguments(H, _, B),
-    [H1|T1]=B,
-    push_to_queue(H1, T1, Q2),
-    write_head_tail(T, Q2).
-% --------------------------------------------------
-push_to_queue(_, [0], Q2) :-
-    nl,
-    write('Q2:'),
+    get_elem_queue((Num, Cnt), Q1),
+    push_to_queue(Num, Cnt, Q2),
+    [_|T]=Q1,
+    queue_element_cardinality(T, Q2).
+% ----------------------------------------------------
+push_to_queue(_, 0, Q2) :- 
     write(Q2),
     !.
-push_to_queue(H, [T|_], Q2) :-
-    append(Q2, [H], NewQueue),
-    NewT is T-1,
-    push_to_queue(H, [NewT], NewQueue).
+push_to_queue(Num, Cnt, Q2) :-
+    enqueue(Num, Q2, NewQueue),
+    NewCnt is Cnt-1,
+    push_to_queue(Num, NewCnt, NewQueue).
