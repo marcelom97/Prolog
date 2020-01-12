@@ -10,13 +10,13 @@
 % c], [a, b, c, d]).» θα πρέπει να επιστρέψει yes.
 
 % ΚΕΦΑΛΗ 
-% one_occurrence([],[]).
-% one_occurrence([Head|Tail1], [Head|Tail2]):-
-%     one_occurrence(Tail1, Tail2),
-%     \+member(Head,Tail2).
-% one_occurrence([Head|Tail1], Tail2):- 
-%     one_occurrence(Tail1, Tail2),
-%     member(Head,Tail2).
+one_occurrence([],[]).
+one_occurrence([Head|Tail1], [Head|Tail2]):-
+    one_occurrence(Tail1, Tail2),
+    \+member(Head,Tail2).
+one_occurrence([Head|Tail1], Tail2):- 
+    one_occurrence(Tail1, Tail2),
+    member(Head,Tail2).
     
 % ΣΩΜΑ
 one_occurrence(L1, L2) :-
